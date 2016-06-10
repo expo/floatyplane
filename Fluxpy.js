@@ -477,10 +477,9 @@ const Scene = () => (
 );
 
 
-Exponent.Font.loadAsync(
-  'score',
-  'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
-);
+Exponent.Font.loadAsync({
+  score:  'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
+});
 
 const styles = StyleSheet.create({
   scoreContainer: {
