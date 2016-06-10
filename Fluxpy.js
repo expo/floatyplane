@@ -10,7 +10,7 @@ import {
 import Immutable from 'seamless-immutable';
 
 import { connect } from 'react-redux';
-import { createCustomFontComponent } from '@exponent/with-custom-font';
+import Exponent from 'exponent';
 
 import Media from './Media';
 import Styles from './Styles';
@@ -273,10 +273,6 @@ const scoreReduce = defaultReducer({
   },
 });
 
-const WithScoreFont = createCustomFontComponent({
-  uri: 'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
-});
-
 const Score = connect(
   ({ splash, score }) => Immutable({ splash, score: Math.floor(score) })
 )(
@@ -286,15 +282,13 @@ const Score = connect(
     }
 
     return (
-      <WithScoreFont>
-        <View style={styles.scoreContainer}>
-          <Text
-            key="score-text"
-            style={styles.score}>
-            {score}
-          </Text>
-        </View>
-      </WithScoreFont>
+      <View style={styles.scoreContainer}>
+        <Text
+          key="score-text"
+          style={styles.score}>
+          {score}
+        </Text>
+      </View>
     );
   }
 );
@@ -483,6 +477,11 @@ const Scene = () => (
 );
 
 
+Exponent.Font.loadAsync(
+  'score',
+  'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
+);
+
 const styles = StyleSheet.create({
   scoreContainer: {
     position: 'absolute',
@@ -494,13 +493,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#363029',
   },
   score: {
+    ...Exponent.Font.style('score'),
     color: '#fcfaf8',
     fontSize: 33,
-    fontFamily: '04b_19',
     backgroundColor: 'transparent',
     margin: -1,
   },
 });
+
 
 export {
   sceneReduce,
