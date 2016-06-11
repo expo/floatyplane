@@ -3,20 +3,21 @@
   "version": "1.0.0",
   "description": "Hello Exponent!",
   "main": "main.js",
-  "author": "Nik Sigatapu",
+  "author": "Nikhilesh Sigatapu <nikhilesh@sixfivezero.net>",
   "exp": {
     "name": "Floaty Plane",
     "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
     "orientation": "portrait",
-    "sdkVersion": "5.0.0"
+    "sdkVersion": "UNVERSIONED"
   },
   "eslintConfig": {
     "extends": "exponent/react"
   },
   "dependencies": {
     "@exponent/with-custom-font": "^2.0.1",
-    "react": "^0.14.7",
-    "react-native": "exponentjs/react-native#sdk-5.0.0",
+    "exponent": "^6.0.0",
+    "react": "^15.1.0",
+    "react-native": "github:exponentjs/react-native#sdk-6.0.0",
     "react-redux": "^4.4.5",
     "redux": "^3.0.4",
     "seamless-immutable": "^6.1.0",
