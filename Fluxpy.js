@@ -10,7 +10,7 @@ import {
 import Immutable from 'seamless-immutable';
 
 import { connect } from 'react-redux';
-import Exponent from 'exponent';
+import { Font } from 'exponent';
 
 import Media from './Media';
 import Styles from './Styles';
@@ -477,7 +477,7 @@ const Scene = () => (
 );
 
 
-Exponent.Font.loadAsync({
+Font.loadAsync({
   score:  'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
 });
 
@@ -492,7 +492,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#363029',
   },
   score: {
-    ...Exponent.Font.style('score'),
+    ...Font.style('score'),
     color: '#fcfaf8',
     fontSize: 33,
     backgroundColor: 'transparent',
