@@ -11,6 +11,9 @@
     "sdkVersion": "5.0.0",
     "android": {
       "package": "com.sk3vy.floatyplane"
+    },
+    "ios": {
+      "bundleIdentifier": "com.sk3vy.floatyplane"
     }
   },
   "eslintConfig": {
