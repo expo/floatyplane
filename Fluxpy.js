@@ -12,7 +12,6 @@ import Immutable from 'seamless-immutable';
 import { connect } from 'react-redux';
 import { Font } from 'exponent';
 
-import Media from './Media';
 import Styles from './Styles';
 
 import REPL from './REPL';
@@ -116,11 +115,11 @@ const Bird = connect(
       <Image
         key="bird-image"
         style={{ position: 'absolute',
-                 transform: [{ rotate: rot + 'deg' }],
+                 transform: [{ rotate: `${rot}deg` }],
                  left: x - w / 2, top: y - h / 2,
                  width: w, height: h,
                  backgroundColor: 'transparent' }}
-        source={{ uri: Media['floaty.png'] }}
+        source={require('./media/floaty.png')}
       />
     );
   }
@@ -141,8 +140,8 @@ const defaultPipe = {
 };
 
 const pipeImgs = [
-  'pillar-1.png',
-  'pillar-2.png',
+  require('./media/pillar-1.png'),
+  require('./media/pillar-2.png'),
 ];
 
 const pickPipeImg = () =>
@@ -239,7 +238,7 @@ const Pipes = connect(
                      left: x, top: bottom ? y : y - h,
                      width: 800, height: 800,
                      backgroundColor: 'transparent' }}
-            source={{ uri: Media[img] }}
+            source={img}
           />
         );
       });
@@ -299,10 +298,10 @@ const Score = connect(
  */
 
 const cloudImgs = [
-  'cloud-1.png',
-  'cloud-2.png',
-  'cloud-3.png',
-  'cloud-4.png',
+  require('./media/cloud-1.png'),
+  require('./media/cloud-2.png'),
+  require('./media/cloud-3.png'),
+  require('./media/cloud-4.png'),
 ];
 
 const CLOUD_WIDTH = 283;
@@ -358,7 +357,7 @@ const Clouds = connect(
                        left: x, top: y,
                        width: CLOUD_WIDTH, height: CLOUD_HEIGHT,
                        backgroundColor: 'transparent' }}
-              source={{ uri: Media[img] }}
+              source={img}
             />
           ))
         }
@@ -388,7 +387,7 @@ const Splash = connect(
                  left: (Styles.screenW - w) / 2, top: 100,
                  width: w, height: h,
                  backgroundColor: 'transparent' }}
-        source={{ uri: Media['splash.png'] }}
+        source={require('./media/splash.png')}
       />
     );
   }
@@ -415,7 +414,7 @@ const Rewind = connect(
                  left: (Styles.screenW - 30 - w), top: 42,
                  width: w, height: h,
                  backgroundColor: '#f00' }}
-        source={{ uri: Media['rewind.png'] }}
+        source={require('./media/rewind.png')}
       />
     );
   }
