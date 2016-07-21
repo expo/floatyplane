@@ -10,7 +10,7 @@ import {
 import Immutable from 'seamless-immutable';
 
 import { connect } from 'react-redux';
-import { Font } from 'exponent';
+import * as Exponent from 'exponent';
 
 import Styles from './Styles';
 
@@ -462,21 +462,66 @@ const sceneReduce = (state = Immutable({}), action, dispatch) => {
   });
 };
 
-const Scene = () => (
-  <View
-    key="scene-container"
-    style={[Styles.container, { backgroundColor: '#f5fcff' }]}>
-    <Clouds />
-    <Pipes />
-    <Bird />
-    <Score />
-    <Rewind />
-    <Splash />
-  </View>
-);
+class Scene extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      preloaded: false,
+    };
+  }
+
+  componentDidMount() {
+    this.preloadAssetsAsync();
+  }
+
+  async preloadAssetsAsync() {
+    const assets = [
+      require('./media/floaty.png'),
+      require('./media/pillar-1.png'),
+      require('./media/pillar-2.png'),
+      require('./media/cloud-1.png'),
+      require('./media/cloud-2.png'),
+      require('./media/cloud-3.png'),
+      require('./media/cloud-4.png'),
+      require('./media/splash.png'),
+      require('./media/rewind.png'),
+    ];
+    for (let asset of assets) {
+      await Exponent.Asset.fromModule(asset).preloadAsync();
+    }
+    this.setState({ preloaded: true });
+  }
+
+  render() {
+    return this.state.preloaded ? (
+      <View
+        key="scene-container"
+        style={[Styles.container, { backgroundColor: '#f5fcff' }]}>
+        <Clouds />
+        <Pipes />
+        <Bird />
+        <Score />
+        <Rewind />
+        <Splash />
+      </View>
+    ) : (
+      <View
+        key="scene-container"
+        style={[Styles.container, {
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#fff',
+          }]}>
+        <Text style={{ fontSize: 14 }}>
+          Loading...
+        </Text>
+      </View>
+    );
+  }
+}
 
 
-Font.loadAsync({
+Exponent.Font.loadAsync({
   score:  'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
 });
 
@@ -491,7 +536,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#363029',
   },
   score: {
-    ...Font.style('score'),
+    ...Exponent.Font.style('score'),
     color: '#fcfaf8',
     fontSize: 33,
     backgroundColor: 'transparent',
