@@ -1,6 +1,3 @@
 {
-  "presets": ["react-native-stage-0/decorator-support"],
-  "plugins": [
-    "transform-react-constant-elements"
-  ]
+  "presets": ["react-native-stage-0/decorator-support"]
 }
