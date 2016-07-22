@@ -485,6 +485,7 @@ class Scene extends React.Component {
       require('./media/cloud-4.png'),
       require('./media/splash.png'),
       require('./media/rewind.png'),
+      require('./media/score.ttf'),
     ];
     for (let asset of assets) {
       await Exponent.Asset.fromModule(asset).downloadAsync();
@@ -522,7 +523,7 @@ class Scene extends React.Component {
 
 
 Exponent.Font.loadAsync({
-  score:  'https://dl.dropboxusercontent.com/u/535792/exponent/floaty-font.ttf',
+  score: require('./media/score.ttf'),
 });
 
 const styles = StyleSheet.create({

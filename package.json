@@ -14,6 +14,9 @@
     },
     "ios": {
       "bundleIdentifier": "com.sk3vy.floatyplane"
+    },
+    "packagerOpts": {
+      "assetExts": ["png", "ttf"]
     }
   },
   "eslintConfig": {
