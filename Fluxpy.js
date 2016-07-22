@@ -487,7 +487,7 @@ class Scene extends React.Component {
       require('./media/rewind.png'),
     ];
     for (let asset of assets) {
-      await Exponent.Asset.fromModule(asset).preloadAsync();
+      await Exponent.Asset.fromModule(asset).downloadAsync();
     }
     this.setState({ preloaded: true });
   }
