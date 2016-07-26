@@ -425,7 +425,29 @@ const Rewind = connect(
  * Fluxpy
  */
 
-const sceneReduce = (state = Immutable({}), action, dispatch) => {
+export const loadAsync = async () => {
+  const assets = [
+    require('./media/floaty.png'),
+    require('./media/pillar-1.png'),
+    require('./media/pillar-2.png'),
+    require('./media/cloud-1.png'),
+    require('./media/cloud-2.png'),
+    require('./media/cloud-3.png'),
+    require('./media/cloud-4.png'),
+    require('./media/splash.png'),
+    require('./media/rewind.png'),
+    require('./media/score.ttf'),
+  ];
+  for (let asset of assets) {
+    await Exponent.Asset.fromModule(asset).downloadAsync();
+  }
+
+  await Exponent.Font.loadAsync({
+    score: require('./media/score.ttf'),
+  });
+};
+
+export const sceneReduce = (state = Immutable({}), action, dispatch) => {
   let newState = state.merge({ parent: state });
 
   switch (action.type) {
@@ -462,69 +484,19 @@ const sceneReduce = (state = Immutable({}), action, dispatch) => {
   });
 };
 
-class Scene extends React.Component {
-  constructor(props, context) {
-    super(props, context);
-    this.state = {
-      preloaded: false,
-    };
-  }
+export const Scene = () => (
+  <View
+    key="scene-container"
+    style={[Styles.container, { backgroundColor: '#f5fcff' }]}>
+    <Clouds />
+    <Pipes />
+    <Bird />
+    <Score />
+    <Rewind />
+    <Splash />
+  </View>
+);
 
-  componentDidMount() {
-    this.preloadAssetsAsync();
-  }
-
-  async preloadAssetsAsync() {
-    const assets = [
-      require('./media/floaty.png'),
-      require('./media/pillar-1.png'),
-      require('./media/pillar-2.png'),
-      require('./media/cloud-1.png'),
-      require('./media/cloud-2.png'),
-      require('./media/cloud-3.png'),
-      require('./media/cloud-4.png'),
-      require('./media/splash.png'),
-      require('./media/rewind.png'),
-      require('./media/score.ttf'),
-    ];
-    for (let asset of assets) {
-      await Exponent.Asset.fromModule(asset).downloadAsync();
-    }
-    this.setState({ preloaded: true });
-  }
-
-  render() {
-    return this.state.preloaded ? (
-      <View
-        key="scene-container"
-        style={[Styles.container, { backgroundColor: '#f5fcff' }]}>
-        <Clouds />
-        <Pipes />
-        <Bird />
-        <Score />
-        <Rewind />
-        <Splash />
-      </View>
-    ) : (
-      <View
-        key="scene-container"
-        style={[Styles.container, {
-            justifyContent: 'center',
-            alignItems: 'center',
-            backgroundColor: '#fff',
-          }]}>
-        <Text style={{ fontSize: 14 }}>
-          Loading...
-        </Text>
-      </View>
-    );
-  }
-}
-
-
-Exponent.Font.loadAsync({
-  score: require('./media/score.ttf'),
-});
 
 const styles = StyleSheet.create({
   scoreContainer: {
@@ -545,8 +517,3 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export {
-  sceneReduce,
-  Scene,
-};

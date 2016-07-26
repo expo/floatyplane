@@ -4,11 +4,13 @@ import React from 'react';
 import {
   AppRegistry,
   PanResponder,
+  Text,
   View,
 } from 'react-native';
 
 import { connect, Provider } from 'react-redux';
 import { createStore } from 'redux';
+import * as Exponent from 'exponent';
 
 import Styles from './Styles';
 
@@ -19,7 +21,7 @@ REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
 
 
 // Import from a different module for a different game!
-import { sceneReduce, Scene } from './Fluxpy';
+import { loadAsync, sceneReduce, Scene } from './Fluxpy';
 
 
 /**
@@ -140,16 +142,34 @@ const mainReduce = (state, action) => {
   return state;
 };
 
-const Main = () => {
-  REPL.connect();
+class Main extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      loaded: false,
+    };
 
-  const store = createStore(mainReduce,
-                            mainReduce(undefined, { type: 'START' }));
-  return (
-    <Provider store={store}>
-      <Game />
-    </Provider>
-  );
-};
+    REPL.connect();
+  }
+
+  componentDidMount() {
+    this.loadAsync();
+  }
+
+  async loadAsync() {
+    await loadAsync();
+    this.setState({ loaded: true });
+  }
+
+  render() {
+    return this.state.loaded ? (
+      <Provider
+        store={createStore(mainReduce,
+                           mainReduce(undefined, { type: 'START' }))}>
+        <Game />
+      </Provider>
+    ) : <Exponent.Components.AppLoading />;
+  }
+}
 
 AppRegistry.registerComponent('main', () => Main);
