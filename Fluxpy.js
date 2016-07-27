@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+  Alert,
   Image,
   StyleSheet,
   Text,
@@ -426,25 +427,29 @@ const Rewind = connect(
  */
 
 export const loadAsync = async () => {
-  const assets = [
-    require('./media/floaty.png'),
-    require('./media/pillar-1.png'),
-    require('./media/pillar-2.png'),
-    require('./media/cloud-1.png'),
-    require('./media/cloud-2.png'),
-    require('./media/cloud-3.png'),
-    require('./media/cloud-4.png'),
-    require('./media/splash.png'),
-    require('./media/rewind.png'),
-    require('./media/score.ttf'),
-  ];
-  for (let asset of assets) {
-    await Exponent.Asset.fromModule(asset).downloadAsync();
-  }
+  try {
+    const assets = [
+      require('./media/floaty.png'),
+      require('./media/pillar-1.png'),
+      require('./media/pillar-2.png'),
+      require('./media/cloud-1.png'),
+      require('./media/cloud-2.png'),
+      require('./media/cloud-3.png'),
+      require('./media/cloud-4.png'),
+      require('./media/splash.png'),
+      require('./media/rewind.png'),
+      require('./media/score.ttf'),
+    ];
+    for (let asset of assets) {
+      await Exponent.Asset.fromModule(asset).downloadAsync();
+    }
 
-  await Exponent.Font.loadAsync({
-    score: require('./media/score.ttf'),
-  });
+    await Exponent.Font.loadAsync({
+      score: require('./media/score.ttf'),
+    });
+  } catch (e) {
+    Alert.alert('Error!', e.message);
+  }
 };
 
 export const sceneReduce = (state = Immutable({}), action, dispatch) => {
