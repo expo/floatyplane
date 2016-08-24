@@ -1,0 +1,16 @@
+{
+    "name": "Floaty Plane",
+    "slug": "floatyplane",
+    "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
+    "orientation": "portrait",
+    "sdkVersion": "9.0.0",
+    "android": {
+        "package": "com.sk3vy.floatyplane"
+    },
+    "ios": {
+        "bundleIdentifier": "com.sk3vy.floatyplane"
+    },
+    "packagerOpts": {
+        "assetExts": ["png", "ttf"]
+    }
+}
