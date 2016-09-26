@@ -514,7 +514,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#363029',
   },
   score: {
-    ...Exponent.Font.style('score'),
+    fontFamily: 'score',
     color: '#fcfaf8',
     fontSize: 33,
     backgroundColor: 'transparent',

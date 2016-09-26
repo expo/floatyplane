@@ -3,7 +3,7 @@
     "slug": "floatyplane",
     "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
     "orientation": "portrait",
-    "sdkVersion": "9.0.0",
+    "sdkVersion": "10.0.1",
     "android": {
         "package": "com.sk3vy.floatyplane"
     },
