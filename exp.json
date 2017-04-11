@@ -1,16 +1,25 @@
 {
-    "name": "Floaty Plane",
-    "slug": "floatyplane",
-    "iconUrl": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
-    "orientation": "portrait",
-    "sdkVersion": "10.0.1",
-    "android": {
-        "package": "com.sk3vy.floatyplane"
-    },
-    "ios": {
-        "bundleIdentifier": "com.sk3vy.floatyplane"
-    },
-    "packagerOpts": {
-        "assetExts": ["png", "ttf"]
-    }
+  "name": "Floaty Plane",
+  "description": "Touch to float!",
+  "slug": "floatyplane",
+  "privacy": "public",
+  "sdkVersion": "15.0.0",
+  "version": "1.15.0",
+  "orientation": "portrait",
+  "primaryColor": "#cccccc",
+  "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
+  "loading": {
+    "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
+    "hideExponentText": true
+  },
+  "android": {
+    "package": "com.sk3vy.floatyplane"
+  },
+  "ios": {
+    "bundleIdentifier": "com.sk3vy.floatyplane"
+  },
+  "packagerOpts": {
+    "assetExts": ["png", "ttf"],
+    "config": "./rn-cli.config.js"
+  }
 }

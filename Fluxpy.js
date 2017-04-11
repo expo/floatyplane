@@ -11,13 +11,13 @@ import {
 import Immutable from 'seamless-immutable';
 
 import { connect } from 'react-redux';
-import * as Exponent from 'exponent';
+import * as Expo from 'expo';
 
 import Styles from './Styles';
 
-import REPL from './REPL';
-
-REPL.registerEval('Fluxpy', (c) => eval(c)); // eslint-disable-line no-eval
+// TODO(nikki): fix REPL
+// import REPL from './REPL';
+// REPL.registerEval('Fluxpy', (c) => eval(c)); // eslint-disable-line no-eval
 
 
 /*
@@ -441,10 +441,10 @@ export const loadAsync = async () => {
       require('./media/score.ttf'),
     ];
     for (let asset of assets) {
-      await Exponent.Asset.fromModule(asset).downloadAsync();
+      await Expo.Asset.fromModule(asset).downloadAsync();
     }
 
-    await Exponent.Font.loadAsync({
+    await Expo.Font.loadAsync({
       score: require('./media/score.ttf'),
     });
   } catch (e) {

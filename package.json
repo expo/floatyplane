@@ -3,15 +3,13 @@
   "version": "1.0.0",
   "description": "Hello Exponent!",
   "main": "main.js",
-  "author": "Nikhilesh Sigatapu <nikhilesh@sixfivezero.net>",
-  "eslintConfig": {
-    "extends": "exponent/react"
-  },
+  "author": "Nikhilesh Sigatapu <nikki@expo.io>",
   "dependencies": {
-    "babel-preset-react-native-stage-0": "^1.0.1",
-    "exponent": "^10.0.0",
-    "react": "^15.3.2",
-    "react-native": "github:exponentjs/react-native#sdk-10.0.1",
+    "@expo/ex-navigation": "~2.9.2",
+    "@expo/samples": "~1.0.3",
+    "expo": "^15.0.2",
+    "react": "~15.4.0",
+    "react-native": "https://github.com/exponent/react-native/archive/sdk-15.0.0.tar.gz",
     "react-redux": "^4.4.5",
     "redux": "^3.0.4",
     "seamless-immutable": "^6.1.0",

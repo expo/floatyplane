@@ -10,14 +10,14 @@ import {
 
 import { connect, Provider } from 'react-redux';
 import { createStore } from 'redux';
-import * as Exponent from 'exponent';
+import * as Expo from 'expo';
 
 import Styles from './Styles';
 
 
-import REPL from './REPL';
-
-REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
+// TODO(nikki): fix REPL
+// import REPL from './REPL';
+// REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
 
 
 // Import from a different module for a different game!
@@ -130,7 +130,7 @@ const dispatchQueue = [];
 
 const mainReduce = (state, action) => {
   if (action.type === 'TICK') {
-    REPL.flushEvalInQueue();
+    // REPL.flushEvalInQueue();
   }
 
   const actions = [action].concat(dispatchQueue);
@@ -149,7 +149,7 @@ class Main extends React.Component {
       loaded: false,
     };
 
-    REPL.connect();
+    // REPL.connect();
   }
 
   componentDidMount() {
@@ -168,8 +168,8 @@ class Main extends React.Component {
                            mainReduce(undefined, { type: 'START' }))}>
         <Game />
       </Provider>
-    ) : <Exponent.Components.AppLoading />;
+    ) : <Expo.AppLoading />;
   }
 }
 
-AppRegistry.registerComponent('main', () => Main);
+Expo.registerRootComponent(Main);
