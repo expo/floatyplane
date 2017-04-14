@@ -1,12 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {
-  AppRegistry,
-  PanResponder,
-  Text,
-  View,
-} from 'react-native';
+import { AppRegistry, PanResponder, Text, View } from 'react-native';
 
 import { connect, Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -14,15 +9,12 @@ import * as Expo from 'expo';
 
 import Styles from './Styles';
 
-
 // TODO(nikki): fix REPL
 // import REPL from './REPL';
 // REPL.registerEval('main', (c) => eval(c)); // eslint-disable-line no-eval
 
-
 // Import from a different module for a different game!
 import { loadAsync, sceneReduce, Scene } from './Fluxpy';
-
 
 /**
  * Touch
@@ -34,31 +26,28 @@ import { loadAsync, sceneReduce, Scene } from './Fluxpy';
  * actually render anything.
  */
 
-const Touch = connect()(
-  ({ dispatch, children, ...props }) => {
-    const panGrant = (_, gestureState) =>
-      dispatch({ ...gestureState, type: 'TOUCH', pressed: true });
-    const panRelease = (_, gestureState) =>
-      dispatch({ ...gestureState, type: 'TOUCH', pressed: false });
-    const panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: () => true,
-      onPanResponderGrant: panGrant,
-      onPanResponderRelease: panRelease,
-      onPanResponderTerminate: panRelease,
-      onShouldBlockNativeResponder: () => false,
-    });
+const Touch = connect()(({ dispatch, children, ...props }) => {
+  const panGrant = (_, gestureState) =>
+    dispatch({ ...gestureState, type: 'TOUCH', pressed: true });
+  const panRelease = (_, gestureState) =>
+    dispatch({ ...gestureState, type: 'TOUCH', pressed: false });
+  const panResponder = PanResponder.create({
+    onStartShouldSetPanResponder: () => true,
+    onPanResponderGrant: panGrant,
+    onPanResponderRelease: panRelease,
+    onPanResponderTerminate: panRelease,
+    onShouldBlockNativeResponder: () => false,
+  });
 
-    return (
-      <View
-        {...props}
-        {...panResponder.panHandlers}
-        style={{ ...props.style, flex: 1 }}>
-        {children}
-      </View>
-    );
-  }
-);
-
+  return (
+    <View
+      {...props}
+      {...panResponder.panHandlers}
+      style={{ ...props.style, flex: 1 }}>
+      {children}
+    </View>
+  );
+});
 
 /**
  * Clock
@@ -104,7 +93,6 @@ class Clock extends React.Component {
   }
 }
 
-
 /**
  * Game
  *
@@ -118,7 +106,6 @@ const Game = () => (
     <Touch style={Styles.container} />
   </View>
 );
-
 
 /**
  * Main
@@ -135,7 +122,7 @@ const mainReduce = (state, action) => {
 
   const actions = [action].concat(dispatchQueue);
   dispatchQueue.length = 0;
-  const dispatch = (action) => actions.push(action);
+  const dispatch = action => actions.push(action);
   while (actions.length > 0) {
     state = sceneReduce(state, actions.shift(), dispatch);
   }
@@ -162,13 +149,15 @@ class Main extends React.Component {
   }
 
   render() {
-    return this.state.loaded ? (
-      <Provider
-        store={createStore(mainReduce,
-                           mainReduce(undefined, { type: 'START' }))}>
-        <Game />
-      </Provider>
-    ) : <Expo.AppLoading />;
+    return this.state.loaded
+      ? <Provider
+          store={createStore(
+            mainReduce,
+            mainReduce(undefined, { type: 'START' })
+          )}>
+          <Game />
+        </Provider>
+      : <Expo.AppLoading />;
   }
 }
 

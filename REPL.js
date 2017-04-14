@@ -7,7 +7,6 @@ if (!global.navigator.userAgent) {
 }
 const io = require('socket.io-client/socket.io');
 
-
 const evalMap = {};
 
 /*
@@ -30,8 +29,9 @@ const registerEval = (contextName, evaluator) => {
  */
 const evalIn = (contextName, code) => {
   if (!evalMap[contextName]) {
-    throw new Error(`Evaluator context '${contextName}' not registered ` +
-                    ` for evalIn(...)`);
+    throw new Error(
+      `Evaluator context '${contextName}' not registered ` + ` for evalIn(...)`
+    );
   }
   return evalMap[contextName](code);
 };
@@ -53,7 +53,7 @@ const queueEvalIn = (contextName, code) => {
  * Usually you want to call this once each `'TICK'`.
  */
 const flushEvalInQueue = () => {
-  evalInQueue.forEach(({ module, code}) => {
+  evalInQueue.forEach(({ module, code }) => {
     console.log(window.evalIn(module, code));
   });
   evalInQueue.length = 0;
@@ -81,7 +81,7 @@ const connect = (url = 'http://nikhileshs-air.local:5000') => {
 /*
  * Log to the REPL server.
  */
-const log = (obj) => {
+const log = obj => {
   socket.emit('log', obj);
 };
 

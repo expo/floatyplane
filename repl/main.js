@@ -7,7 +7,6 @@ var io = require('socket.io')(http);
 var babel = require('babel-core');
 var readline = require('readline');
 
-
 function pretty(msg) {
   if (typeof msg === 'string') {
     return msg;
@@ -15,7 +14,6 @@ function pretty(msg) {
     return JSON.stringify(msg, null, 2);
   }
 }
-
 
 io.on('connection', function(socket) {
   socket.on('evalResult', function(msg) {
@@ -37,7 +35,6 @@ io.on('connection', function(socket) {
 http.listen(5000, function() {
   console.log('listening on *:5000');
 });
-
 
 var context = 'main';
 
@@ -75,7 +72,6 @@ function transform(code) {
   return transformed.code;
 }
 
-
 var rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
@@ -84,14 +80,13 @@ var rl = readline.createInterface({
 rl.on('line', function(line) {
   if (line.startsWith(':context ')) {
     context = line.split(' ')[1];
-    console.log('context is now \'' + context + '\'');
+    console.log("context is now '" + context + "'");
     rl.prompt();
     return;
   }
 
   io.emit('evalIn', { contextName: context, code: transform(line) });
 });
-
 
 fs.watchFile('scratch.js', function(curr) {
   console.log(':run scratch.js');
