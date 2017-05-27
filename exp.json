@@ -1,25 +1,19 @@
 {
-  "name": "Floaty Plane",
-  "description": "Touch to float!",
-  "slug": "floatyplane",
-  "privacy": "public",
-  "sdkVersion": "15.0.0",
-  "version": "1.15.0",
+  "name": "FloatyPlane-GL",
+  "description": "Recreating flappy bird with Expo and Three",
+  "slug": "floatyplane-gl",
+  "icon": "./Assets/floaty.png",
+  "sdkVersion": "17.0.0",
+  "version": "1.0.0",
   "orientation": "portrait",
   "primaryColor": "#cccccc",
-  "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
+  "notification": {
+    "color": "#000000"
+  },
   "loading": {
-    "icon": "https://s3-us-west-2.amazonaws.com/examples-exp/floaty_icon.png",
-    "hideExponentText": true
-  },
-  "android": {
-    "package": "com.sk3vy.floatyplane"
-  },
-  "ios": {
-    "bundleIdentifier": "com.sk3vy.floatyplane"
+    "hideExponentText": false
   },
   "packagerOpts": {
-    "assetExts": ["png", "ttf"],
-    "config": "./rn-cli.config.js"
+    "assetExts": ["ttf", "mp4"]
   }
 }
