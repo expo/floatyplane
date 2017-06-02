@@ -200,7 +200,6 @@ export default class Game extends React.Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        {this.state.started ? <Score score={this.state.scoreCount} /> : null}
         <THREEView
           {...this.viewProps}
           {...this.panResponder.panHandlers}
@@ -209,6 +208,7 @@ export default class Game extends React.Component {
           tick={this.tick}
           style={{ flex: 1 }}
         />
+        {this.state.started ? <Score score={this.state.scoreCount} /> : null}
       </View>
     );
   }
@@ -229,9 +229,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 40,
     width: 75,
+    left: 0,
     textAlign: 'center',
     zIndex: 100,
-    display: 'block',
     backgroundColor: 'transparent',
     color: 'white',
     fontSize: 30,
