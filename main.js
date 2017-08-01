@@ -27,7 +27,9 @@ class App extends React.Component {
     try {
       // Load assets
       await Promise.all(
-        Object.keys(Assets).map(name => Assets[name].downloadAsync())
+        Object.keys(Assets).map(async name => {
+          await Assets[name].downloadAsync();
+        })
       );
 
       // We're good to go!
