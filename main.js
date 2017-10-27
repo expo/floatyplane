@@ -40,9 +40,7 @@ class App extends React.Component {
   }
 
   render() {
-    return this.state.loaded
-      ? <Game style={{ flex: 1 }} />
-      : <Expo.Components.AppLoading />;
+    return this.state.loaded ? <Game style={{ flex: 1 }} /> : <Expo.Components.AppLoading />;
   }
 }
 

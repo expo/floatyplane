@@ -1,13 +1,6 @@
 import Expo from 'expo';
 import React from 'react';
-import {
-  Alert,
-  Dimensions,
-  PanResponder,
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native';
+import { Alert, Dimensions, PanResponder, View, Text, StyleSheet } from 'react-native';
 import * as Meshes from '../utilities/scene';
 import Assets from '../Assets';
 
@@ -46,9 +39,7 @@ export default class Game extends React.Component {
     // The width of the view will be 4 world-space units. The height is set based
     // on the phone screen's aspect ratio.
     this.width = 4;
-    const { width: screenWidth, height: screenHeight } = Dimensions.get(
-      'window'
-    );
+    const { width: screenWidth, height: screenHeight } = Dimensions.get('window');
     this.height = screenHeight / screenWidth * this.width;
     this.camera = new THREE.OrthographicCamera(
       -this.width / 2,
@@ -123,11 +114,7 @@ export default class Game extends React.Component {
     }
 
     // Checks if plane passes pillar to increment score
-    if (
-      Math.round(object.position.x, -5) == 0 &&
-      !object.passed &&
-      object.name == 'top'
-    ) {
+    if (Math.round(object.position.x, -5) == 0 && !object.passed && object.name == 'top') {
       this.setState({ scoreCount: this.state.scoreCount + 1 });
       object.passed = true;
     }
@@ -216,11 +203,7 @@ export default class Game extends React.Component {
 
 class Score extends React.Component {
   render() {
-    return (
-      <Text style={styles.scoreText}>
-        {this.props.score}
-      </Text>
-    );
+    return <Text style={styles.scoreText}>{this.props.score}</Text>;
   }
 }
 
